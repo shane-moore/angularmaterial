@@ -16,13 +16,23 @@ export class SidenavComponent implements OnInit, OnDestroy {
   matcher: MediaQueryList;
 
   users: Observable<User[]>;
-
+  isDarkTheme: boolean = false;
+  dir: string = 'ltr';
 
   constructor(public mediaMatcher: MediaMatcher,
     private userService: UserService,
     private router: Router) {}
 
     @ViewChild(MatSidenav) sidenav: MatSidenav;
+
+    toggleTheme() {
+      this.isDarkTheme = !this.isDarkTheme;
+    }
+
+    toggleDir() {
+      this.dir =  this.dir === 'ltr' ? 'rtl' : 'ltr';
+      this.sidenav.toggle().then(()=> this.sidenav.toggle());
+    }
 
   ngOnInit() {
     this.matcher = this.mediaMatcher.matchMedia('(max-width: 760px)');

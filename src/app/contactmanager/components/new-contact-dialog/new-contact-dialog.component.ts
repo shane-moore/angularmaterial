@@ -37,7 +37,7 @@ export class NewContactDialogComponent implements OnInit {
     })
   }
 
-  close() {
+  dismiss() {
     this.dialogRef.close(null);
   }
 
